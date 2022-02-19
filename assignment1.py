@@ -3,7 +3,6 @@
 import random #for getting random numbers (RNG basically)
 import matplotlib.pyplot as plt #for plotting points / lists
 
-
 #Little's law:
 # L (average # of items in system) = throughput(average arrival and departure rate) * Lead time
 
@@ -14,7 +13,6 @@ lambdaValues = [0.2, 0.4, 0.5, 0.6, 0.7, 0.75, 0.79, 0.795] #lambda values given
 W = [] #list to hold values of W after L values have been calculated
 littleLawValue = [] #list to hold little law values for each lambda value
 queue = [0] #list to hold probability entries for the 1,000,000 entries
-
 
 def probability(arrivals, departures, checkNumber):
     # q_(k+1) = q_(k) + a_(k) - d_(k) <-- from slides with the 2 statement checks.
@@ -34,17 +32,17 @@ for currentValue in lambdaValues:
 
         #if the arrival rate is less than the lambda value, an arrival has occured. otherwise, it didn't.
 
-        if arrivalRV < currentValue:
+        if arrivalRV < currentValue: # 1 = occured, 0 = didn't
             arrival = 1
         else:
             arrival = 0
 
         #similarly, if departureRV is less than mu (departure rate), a departure has occured. otherwise, it didn't.
-        if departureRV < departureRate:
+        
+        if departureRV < departureRate:# 1 = occured, 0 = didn't
             departure = 1
         else:
             departure = 0
-
         probability(arrival, departure, checkNumber) #send it back in for the next entry check
 
     summed = sum(queue) / len(queue) #take the sum of probabilities for this lambda value
@@ -55,7 +53,6 @@ print("Little Law Values:")
 print(littleLawValue)
 print("               ")
 
-
 #calculate the delay value and append it to the list using Little's Law Calculation
 for i in range(8):
     delayedValue = littleLawValue[i] / lambdaValues[i]
@@ -64,7 +61,6 @@ print("W values:")
 print(W)
 
 #plot expected queueing delay (W) with respect to the arrival rate (lambda)
-
 plt.plot(lambdaValues, W, 'o', color = 'blue')
 plt.title("Expected Queueing Delay (W) vs Arrival Rate (λ)")
 plt.xlabel('Arrival Rate (λ)')
