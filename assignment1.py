@@ -1,7 +1,7 @@
 #adam bayley 20176309 19ahb
 
-import random
-import matplotlib.pyplot as plt
+import random #for getting random numbers (RNG basically)
+import matplotlib.pyplot as plt #for plotting points / lists
 
 
 #Little's law:
